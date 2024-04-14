@@ -3,73 +3,32 @@ import Home from 'lucide-svelte/icons/home';
 import Package2 from 'lucide-svelte/icons/package-2';
 
 export const siteData = {
-	appShellTitle: 'Starter Template',
+	appShellTitle: 'Task Timer',
 	dashboardLinks: [
 		{
-			name: 'Dashboard',
+			name: 'Current Day',
 			icon: Home,
-			href: '/protected/dashboard',
+			href: '/protected/current-day',
 			needsRole: 'USER'
 		},
 		{
-			name: 'Store',
-			icon: Home,
-			href: '/protected/store',
-			needsRole: 'USER'
-		},
-		{
-			name: 'Your Products',
-			icon: Home,
-			href: '/protected/bought-products',
-			needsRole: 'USER'
-		},
-		{
-			name: 'Another Page',
+			name: 'Past Days',
 			icon: Package2,
-			href: '/protected/another-page',
+			href: '/protected/past-days',
 			needsRole: 'USER'
 		},
-		{
-			name: 'Admin only area',
-			icon: Package2,
-			href: '/protected/admin/overview',
-			needsRole: 'ADMIN'
-		}
 	],
 	landingLinks: [
 		{
-			name: 'Home',
-			href: '/'
-		},
-		{
 			name: 'Login',
-			href: '/signin'
+			href: '/'
 		},
 		{
 			name: 'Register',
 			href: '/signup'
 		}
 	],
-	landingHeaderTitle: 'Starter Template',
-	landingHeaderIconUrl: '/favicon.png',
-	landingFooterIconUrl: '/favicon.png',
-	footerLinks: {
-		legal: [
-			{
-				name: 'Privacy Policy',
-				href: '/privacy-policy'
-			},
-			{
-				name: 'Terms of Service',
-				href: '/terms-of-service'
-			},
-			{
-				name: 'Data Protection',
-				href: '/data-protection'
-			}
-		]
-	},
-	copyRightFooter: {
-		text: '&copy; 2024, your company name'
-	}
+	landingHeaderTitle: 'Task Timer',
+	landingHeaderIconUrl: '/tasktimer.png',
+	landingFooterIconUrl: '/tasktimer.png'
 };

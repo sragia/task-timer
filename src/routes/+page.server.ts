@@ -1,5 +1,5 @@
 import { db, lucia } from '$lib/server/auth';
-import { fail, redirect } from '@sveltejs/kit';
+import { fail, redirect, type Actions } from '@sveltejs/kit';
 import { TimeSpan, createDate } from 'oslo';
 
 import { generateId } from 'lucia';
@@ -25,7 +25,7 @@ async function createPasswordResetToken(userId: string): Promise<string> {
 
 	return tokenId;
 }
-export const actions = {
+export const actions: Actions = {
 	login: async (event) => {
 		const formData = await event.request.formData();
 		const email = formData.get('email') as string;
@@ -61,7 +61,7 @@ export const actions = {
 			...sessionCookie.attributes
 		});
 
-		redirect(302, '/protected/dashboard');
+		redirect(302, '/protected/current-day');
 	},
 	resetPassword: async (event) => {
 		const formData = await event.request.formData();

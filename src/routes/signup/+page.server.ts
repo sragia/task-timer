@@ -1,9 +1,9 @@
 import { db, lucia } from '$lib/server/auth';
-import { fail, redirect } from '@sveltejs/kit';
+import { fail, redirect, type Actions } from '@sveltejs/kit';
 
 import { Argon2id } from 'oslo/password';
 
-export const actions = {
+export const actions: Actions = {
 	default: async (event) => {
 		const formData = await event.request.formData();
 		const email = formData.get('email') as string;
@@ -42,6 +42,6 @@ export const actions = {
 			...sessionCookie.attributes
 		});
 
-		redirect(302, '/protected/dashboard');
+		redirect(302, '/protected/current-day');
 	}
 };

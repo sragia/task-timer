@@ -1,4 +1,4 @@
-import { redirect } from '@sveltejs/kit';
+import { redirect, type Actions } from '@sveltejs/kit';
 import { db, lucia } from '../../../lib/server/auth';
 import type { PageServerLoad } from './$types';
 import { Argon2id } from 'oslo/password';
@@ -17,7 +17,7 @@ export const load = (async ({ params }) => {
 	};
 }) satisfies PageServerLoad;
 
-export const actions = {
+export const actions: Actions = {
 	default: async (event) => {
 		const formData = await event.request.formData();
 		const password = formData.get('password') as string;
@@ -54,6 +54,6 @@ export const actions = {
 			...sessionCookie.attributes
 		});
 
-		redirect(302, '/protected/dashboard');
+		redirect(302, '/protected/current-day');
 	}
 };

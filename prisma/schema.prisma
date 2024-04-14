@@ -17,9 +17,8 @@ model User {
   sessions           Session[]
   roles              Role[]               @default([USER])
   PasswordResetToken PasswordResetToken[]
+  DayTasks           Day[]
   createdAt          DateTime             @default(now())
-  boughtProducts     BoughtProduct[]
-  UserPayment        UserPayment[]
 }
 
 model Session {
@@ -37,40 +36,22 @@ model PasswordResetToken {
   user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
 
-model BoughtProduct {
-  id        String  @id @default(cuid())
+model Day {
+  id        String    @id @default(cuid())
   userId    String
-  productId String
-  user      User    @relation(fields: [userId], references: [id])
-  product   Product @relation(fields: [productId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  user      User      @relation(references: [id], fields: [userId], onDelete: Cascade)
+  startedAt DateTime  @default(now())
+  endedAt   DateTime?
+  Tasks     Task[]
 }
 
-model UserPayment {
-  id            String   @id @default(cuid())
-  amount        Float
-  provider      String   @default("STRIPE")
-  createdAt     DateTime @default(now())
-  transactionId String   @unique
-  user          User     @relation(fields: [userId], references: [id])
-  userId        String
-  product       Product  @relation(fields: [productId], references: [id])
-  productId     String
-}
-
-model Product {
-  id String @id @default(cuid())
-
-  name          String          @unique
-  description   String
-  price         Float
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  BoughtProduct BoughtProduct[]
-
-  UserPayment UserPayment[]
+model Task {
+  id          String    @id @default(cuid())
+  description String
+  startedAt   DateTime
+  endedAt     DateTime?
+  dayId       String
+  day         Day       @relation(references: [id], fields: [dayId], onDelete: Cascade)
 }
 
 enum Role {

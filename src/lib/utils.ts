@@ -60,3 +60,29 @@ export const flyAndScale = (
 		easing: cubicOut
 	};
 };
+
+export const dateHandler = {
+	fullDate(date: Date): string {
+		return date.toLocaleDateString();
+	},
+	toFormattedDay(date: Date): string {
+		return date.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+	},
+	toTime(date: Date): string {
+		return date.toLocaleTimeString();
+	},
+
+	msToTime(ms: number) {
+		const h = Math.floor(ms / 1000 / 60 / 60);
+		const m = Math.floor(((ms / 1000 / 60 / 60) - h) * 60);
+		const s = Math.floor((((ms / 1000 / 60 / 60) - h) * 60 - m) * 60);
+
+		return `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`
+	},
+
+	timeLapsed(startDate: Date, endDate: Date): string {
+		const diff = endDate.getTime() - startDate.getTime();
+
+		return this.msToTime(diff);
+	}
+}

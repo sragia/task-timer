@@ -1,4 +1,4 @@
-import { fail } from '@sveltejs/kit';
+import { fail, type Actions } from '@sveltejs/kit';
 import { db } from '../../../../lib/server/auth';
 import type { PageServerLoad } from './$types';
 import { Argon2id } from 'oslo/password';
@@ -6,7 +6,7 @@ export const load = (async () => {
 	return {};
 }) satisfies PageServerLoad;
 
-export const actions = {
+export const actions: Actions = {
 	default: async (event) => {
 		const formData = await event.request.formData();
 		const user = event.locals.user;

@@ -42,17 +42,17 @@
 				</div>
 				<div class="mt-4 text-center text-sm">
 					Already have an account?
-					<a href="/signin" class="underline"> Sign In </a>
+					<a href="/" class="underline"> Sign In </a>
 				</div>
 			</div>
 		</div>
-		<div class="hidden bg-muted lg:block">
+		<div class="hidden h-[100svh] flex-col items-center justify-center bg-muted lg:flex">
 			<img
-				src="/favicon.png"
+				src="/tasktimer.png"
 				alt="placeholder"
 				width="1920"
 				height="1080"
-				class="h-screen w-full object-cover dark:brightness-[0.2] dark:grayscale"
+				class="h-[600px] w-[600px]"
 			/>
 		</div>
 	</div>

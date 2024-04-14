@@ -40,7 +40,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 		return new Response(null, {
 			status: 300,
-			headers: { location: '/protected/dashboard' }
+			headers: { location: '/protected/current-day' }
 		});
 	} else if (event.url.pathname.startsWith('/protected')) {
 		const sessionId = event.cookies.get(lucia.sessionCookieName);
