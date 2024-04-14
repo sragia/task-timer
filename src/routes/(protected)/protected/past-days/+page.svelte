@@ -1,14 +1,9 @@
 <script>
-	import { enhance } from '$app/forms';
-	import { Button } from '$lib/components/ui/button/index';
 	import * as Card from '$lib/components/ui/card/index';
 	import * as Collapsible from '$lib/components/ui/collapsible/index';
-	import { Description } from '$lib/components/ui/drawer';
-	import Input from '$lib/components/ui/input/input.svelte';
 	import { dateHandler } from '$lib/utils';
-	import { ChevronsDownUp, ChevronsUpDown } from 'lucide-svelte';
+	import { ChevronsUpDown } from 'lucide-svelte';
 	import Task from '../current-day/task.svelte';
-	import { toast } from 'svelte-sonner';
 
 	export let data;
 </script>

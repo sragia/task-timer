@@ -2,7 +2,6 @@
 	import { enhance } from '$app/forms';
 	import { Button } from '$lib/components/ui/button/index';
 	import * as Card from '$lib/components/ui/card/index';
-	import { Description } from '$lib/components/ui/drawer';
 	import Input from '$lib/components/ui/input/input.svelte';
 	import { dateHandler } from '$lib/utils';
 	import Task from './task.svelte';

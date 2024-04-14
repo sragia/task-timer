@@ -6,7 +6,6 @@
 	import Input from '../ui/input/input.svelte';
 	import { enhance } from '$app/forms';
 	import { toast } from 'svelte-sonner';
-	import { Loader2 } from 'lucide-svelte';
 	import { Loader } from '../ui/loader';
 	export let showDialog = false;
 	let loading = false;

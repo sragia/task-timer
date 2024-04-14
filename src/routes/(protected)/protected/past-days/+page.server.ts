@@ -1,6 +1,6 @@
 import { taskManager } from "$lib/server/tasks";
 import type { Day } from "@prisma/client";
-import { redirect, type Actions, fail } from "@sveltejs/kit";
+import { redirect } from "@sveltejs/kit";
 import type { RequestEvent } from "../$types";
 
 export const load = async (event: RequestEvent): Promise<{

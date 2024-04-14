@@ -11,6 +11,10 @@
 			let interval = setInterval(() => {
 				timeElapsed = dateHandler.timeLapsed(task.startedAt, new Date());
 			}, 1000);
+
+			return () => {
+				clearInterval(interval);
+			};
 		}
 	});
 </script>
