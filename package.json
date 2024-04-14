@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"postinstall": "npx prisma generate",
-		"start": "npx prisma migrate deploy && npm run seedProducts && node -r dotenv/config build",
+		"start": "npx prisma migrate deploy && node -r dotenv/config build",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -14,8 +14,7 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"test:integration": "playwright test",
-		"test:unit": "vitest",
-		"seedProducts": "cross-env DOTENV_CONFIG_PATH=.env tsx -r dotenv/config prisma/seed/products.ts"
+		"test:unit": "vitest"
 	},
 	"devDependencies": {
 		"@playwright/test": "^1.28.1",
