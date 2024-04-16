@@ -9,8 +9,15 @@
 	onMount(() => {
 		if (!task.endedAt) {
 			let interval = setInterval(() => {
-				timeElapsed = dateHandler.timeLapsed(task.startedAt, new Date());
+				if (!task.endedAt) {
+					timeElapsed = dateHandler.timeLapsed(task.startedAt, new Date());
+				} else {
+					clearInterval(interval);
+				}
 			}, 1000);
+			return () => {
+				clearInterval(interval);
+			};
 		}
 	});
 </script>

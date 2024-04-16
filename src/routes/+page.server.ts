@@ -44,7 +44,7 @@ export const actions: Actions = {
 		});
 		if (!doesUserExist) {
 			return fail(400, {
-				message: 'Email already in use'
+				message: 'Could not find user'
 			});
 		}
 		const validPassword = await new Argon2id().verify(doesUserExist.hashed_password, password);

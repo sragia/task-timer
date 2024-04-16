@@ -10,7 +10,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			event.locals.session = null;
 			return new Response(null, {
 				status: 300,
-				headers: { location: '/signin' }
+				headers: { location: '/' }
 			});
 		}
 
@@ -49,7 +49,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 			event.locals.session = null;
 			return new Response(null, {
 				status: 300,
-				headers: { location: '/signin' }
+				headers: { location: '/' }
 			});
 		}
 

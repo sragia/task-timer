@@ -88,7 +88,8 @@ class TaskManager {
 
         await this.db.task.updateMany({
             where: {
-                dayId: activeDay.id
+                dayId: activeDay.id,
+                endedAt: null
             },
             data: {
                 endedAt: new Date()

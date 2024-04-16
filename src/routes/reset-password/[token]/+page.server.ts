@@ -10,7 +10,7 @@ export const load = (async ({ params }) => {
 	});
 	const expirationDate = new Date(token!.expiresAt);
 	if (expirationDate < new Date()) {
-		redirect(303, '/signin');
+		redirect(303, '/');
 	}
 	return {
 		token: params.token
@@ -31,7 +31,7 @@ export const actions: Actions = {
 		});
 		const expirationDate = new Date(token!.expiresAt);
 		if (expirationDate < new Date()) {
-			redirect(302, '/signin');
+			redirect(302, '/');
 		}
 
 		const user = await db.user.update({

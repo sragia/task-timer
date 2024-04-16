@@ -73,7 +73,7 @@
 				</Card.Content>
 			</Card.Root>
 			<div class="mt-8 flex flex-col gap-2">
-				{#each data.activeDay.Tasks as task}
+				{#each data.activeDay.Tasks as task (task.id)}
 					<Task {task} />
 				{/each}
 			</div>

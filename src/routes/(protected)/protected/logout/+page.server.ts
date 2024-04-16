@@ -12,6 +12,6 @@ export const actions = {
 			path: '.',
 			...sessionCookie.attributes
 		});
-		redirect(302, '/signin');
+		redirect(302, '/');
 	}
 };

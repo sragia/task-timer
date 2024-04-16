@@ -15,6 +15,8 @@
 				class="flex w-full justify-between rounded border px-4 py-2 transition-all hover:bg-secondary"
 			>
 				{dateHandler.toFormattedDay(day.startedAt)}
+				{#if day.endedAt}
+					- {dateHandler.timeLapsed(day.startedAt, day.endedAt)}{/if}
 				<ChevronsUpDown />
 			</Collapsible.Trigger>
 			<Collapsible.Content>

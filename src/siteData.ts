@@ -1,5 +1,4 @@
 import Home from 'lucide-svelte/icons/home';
-
 import Package2 from 'lucide-svelte/icons/package-2';
 
 export const siteData = {
