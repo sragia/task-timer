@@ -16,6 +16,12 @@ export const siteData = {
 			href: '/protected/past-days',
 			needsRole: 'USER'
 		},
+		{
+			name: 'Projects',
+			icon: Package2,
+			href: '/protected/projects',
+			needsRole: 'USER'
+		},
 	],
 	landingLinks: [
 		{

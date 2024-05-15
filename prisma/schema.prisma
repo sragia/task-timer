@@ -50,8 +50,15 @@ model Task {
   description String
   startedAt   DateTime
   endedAt     DateTime?
+  project     String?
+  ticketNr    String?
   dayId       String
   day         Day       @relation(references: [id], fields: [dayId], onDelete: Cascade)
+}
+
+model Project {
+  id  String @id @default(cuid())
+  tag String
 }
 
 enum Role {

@@ -1,4 +1,4 @@
-import type { Day, PrismaClient, Task, User } from "@prisma/client"
+import type { Day, PrismaClient, Project, Task, User } from "@prisma/client"
 import { db, lucia } from "./auth"
 import type { Lucia } from "lucia"
 
@@ -97,7 +97,11 @@ class TaskManager {
         });
     }
 
-    async createNewTask(dayId: string, description: string): Promise<Task> {
+    async createNewTask(dayId: string, description: string, project?: string, ticketNr?: string, offset?: string): Promise<Task> {
+        const off = this.cleanValue(offset);
+        const currentDate = new Date(Date.now() - (off ? parseInt(off) * 1000 : 0));
+
+        console.log(currentDate, typeof offset);
         // Update any previous tasks as completed (usually should be just 1)
         await this.db.task.updateMany({
             where: {
@@ -105,17 +109,47 @@ class TaskManager {
                 endedAt: null
             },
             data: {
-                endedAt: new Date()
+                endedAt: currentDate
             }
         });
 
+        console.log(project)
         return this.db.task.create({
             data: {
                 description,
                 dayId,
-                startedAt: new Date()
+                project: this.cleanValue(project),
+                ticketNr: ticketNr || null,
+                startedAt: currentDate
             }
         })
+    }
+
+    cleanValue(value?: string): string | null | undefined {
+        if (value === 'undefined') {
+            return null;
+        }
+
+        return value;
+    }
+
+    async createProject(projectName: string): Promise<Project> {
+        return this.db.project.create({
+            data: { tag: projectName }
+        });
+    }
+
+    async deleteProject(tag: string): Promise<void> {
+        console.log(tag);
+        await this.db.project.deleteMany({
+            where: {
+                tag
+            }
+        });
+    }
+
+    async getProjects(): Promise<Project[]> {
+        return this.db.project.findMany();
     }
 }
 

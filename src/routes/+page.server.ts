@@ -5,6 +5,7 @@ import { TimeSpan, createDate } from 'oslo';
 import { generateId } from 'lucia';
 import { Argon2id } from 'oslo/password';
 import mailer from '$lib/shared/modules/mailer';
+import type { RequestEvent } from './$types';
 
 async function createPasswordResetToken(userId: string): Promise<string> {
 	// optionally invalidate all existing tokens
@@ -99,3 +100,7 @@ export const actions: Actions = {
 		}
 	}
 };
+export const load = async (event: RequestEvent): Promise<{}> => {
+	if (event.locals.user) redirect(302, '/protected/current-day');
+	return {};
+}

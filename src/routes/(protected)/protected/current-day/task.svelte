@@ -20,11 +20,13 @@
 			};
 		}
 	});
+	export const tags = [task.project, task.ticketNr].filter(Boolean);
 </script>
 
 <Card.Root class="bg-secondary">
 	<Card.Header>
 		<Card.Title class="flex w-full items-center justify-between">
+			{tags.join('-')}
 			{task.description}
 			{#if task.endedAt}
 				<Check color="#00800f" />

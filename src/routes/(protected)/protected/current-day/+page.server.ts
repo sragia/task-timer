@@ -1,5 +1,5 @@
 import { taskManager } from "$lib/server/tasks";
-import type { Day } from "@prisma/client";
+import type { Day, Project } from "@prisma/client";
 import { redirect, type Actions, fail } from "@sveltejs/kit";
 import type { RequestEvent } from "../$types";
 
@@ -17,14 +17,17 @@ export const actions: Actions = {
 
         const dayId = formData.get('dayId') as string;
         const description = formData.get('description') as string;
+        const project = formData.get('project') as string;
+        const ticketNr = formData.get('ticketNr') as string;
+        const offset = formData.get('offset') as string;
         console.log(dayId, description);
         if (!dayId || !description) {
             return fail(400, {
                 message: 'Missing Description'
             });
         }
-
-        await taskManager.createNewTask(dayId, description);
+        console.log(dayId, description, project, ticketNr);
+        await taskManager.createNewTask(dayId, description, project, ticketNr, offset);
 
         return {
             message: 'New Task Created'
@@ -42,13 +45,17 @@ export const actions: Actions = {
 
 export const load = async (event: RequestEvent): Promise<{
     activeDay: Day | false
+    projects: Project[] | null
 }> => {
     if (!event.locals.user) redirect(302, '/');
     const activeDay = await taskManager.getActiveDay(event.locals.user.id);
     if (activeDay) {
         activeDay.Tasks = activeDay.Tasks.reverse();
     }
+
+    const projects = await taskManager.getProjects();
     return {
-        activeDay
+        activeDay,
+        projects
     };
 }
